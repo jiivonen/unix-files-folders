@@ -1,0 +1,49 @@
+:root {
+  --bg: #1a2332;
+  --bg-panel: #243044;
+  --bg-tree: #1e2a3a;
+  --bg-terminal: #0f1419;
+  --border: #3a4a5c;
+  --text: #e8eef4;
+  --text-muted: #9aabbc;
+  --accent: #3d9a7a;
+  --accent-soft: rgba(61, 154, 122, 0.22);
+  --cwd-bg: #2a4a3d;
+  --cwd-text: #b8f0d4;
+  --denied: #c47a6a;
+  --prompt: #7ec8a0;
+  --font-ui: "Segoe UI", "Helvetica Neue", sans-serif;
+  --font-mono: "Cascadia Code", "Fira Code", "Consolas", "Courier New", monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: var(--font-ui);
+  background: var(--bg);
+  color: var(--text);
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  background: rgba(0, 0, 0, 0.25);
+  padding: 0.1em 0.35em;
+  border-radius: 3px;
+}

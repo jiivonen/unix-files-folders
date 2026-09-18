@@ -1,0 +1,228 @@
+.app {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) minmax(0, 1fr);
+  height: 100%;
+  min-height: 100vh;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  padding: 0.65rem 1rem;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, #2a3a4e 0%, var(--bg) 100%);
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.workspace {
+  position: relative;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid var(--border);
+  background:
+    radial-gradient(ellipse at top right, rgba(61, 154, 122, 0.08), transparent 45%),
+    var(--bg-tree);
+}
+
+.pane-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  padding: 0.45rem 0.75rem 0.25rem;
+}
+
+.tree-pane {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding-bottom: 0.75rem;
+}
+
+.file-tree {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  line-height: 1.45;
+  padding: 0.25rem 0.5rem 0.5rem;
+}
+
+.tree-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding-top: 0.12rem;
+  padding-bottom: 0.12rem;
+  padding-right: 0.5rem;
+  border-radius: 3px;
+  color: var(--text);
+}
+
+.tree-row--cwd {
+  background: var(--cwd-bg);
+  color: var(--cwd-text);
+}
+
+.tree-row--dir .tree-name {
+  font-weight: 600;
+}
+
+.tree-row--file {
+  color: var(--text-muted);
+}
+
+.tree-row--denied .tree-name {
+  color: var(--denied);
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+}
+
+.tree-marker {
+  width: 0.85rem;
+  text-align: center;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.tree-row--cwd .tree-marker {
+  color: var(--cwd-text);
+}
+
+.exercise-panel {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  width: min(22rem, calc(100% - 1.2rem));
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  padding: 0.7rem 0.85rem;
+  z-index: 2;
+}
+
+.exercise-panel--minimized {
+  width: auto;
+  padding: 0.45rem 0.65rem;
+}
+
+.exercise-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.exercise-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.exercise-toggle,
+.exercise-nav button {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 4px;
+  padding: 0.25rem 0.55rem;
+  font-size: 0.75rem;
+}
+
+.exercise-toggle:hover,
+.exercise-nav button:hover:not(:disabled) {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.exercise-nav button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.exercise-body {
+  margin: 0.65rem 0;
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+
+.exercise-nav {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.4rem;
+}
+
+.terminal-pane {
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-terminal);
+}
+
+.terminal {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 0.35rem 0.75rem 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  line-height: 1.4;
+}
+
+.terminal-line {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.terminal-line--system {
+  color: var(--text-muted);
+  margin-bottom: 0.4rem;
+}
+
+.terminal-line--input {
+  color: var(--text);
+}
+
+.terminal-line--output {
+  color: #d2dde8;
+}
+
+.terminal-input-row {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 0.15rem;
+}
+
+.terminal-prompt {
+  color: var(--prompt);
+  flex-shrink: 0;
+}
+
+.terminal-input {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font: inherit;
+  caret-color: var(--accent);
+}
+
+@media (max-width: 640px) {
+  .app {
+    grid-template-rows: auto minmax(40vh, 1fr) minmax(35vh, 1fr);
+  }
+
+  .exercise-panel {
+    width: calc(100% - 1.2rem);
+  }
+}
