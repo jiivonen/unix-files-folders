@@ -77,12 +77,6 @@
   color: var(--text-muted);
 }
 
-.tree-row--denied .tree-name {
-  color: var(--denied);
-  text-decoration: line-through;
-  text-decoration-thickness: 1px;
-}
-
 .tree-marker {
   width: 0.85rem;
   text-align: center;

@@ -11,13 +11,22 @@ export default function FileTree({ fs, cwd }) {
 function TreeNode({ node, path, cwd, depth }) {
   const isCwd = path === cwd
   const isDir = node.type === 'dir'
+  // Directories always; files only when this node is the current directory
   const kids = isDir
-    ? Object.keys(node.children).sort((a, b) => {
-        const aHidden = a.startsWith('.')
-        const bHidden = b.startsWith('.')
-        if (aHidden !== bHidden) return aHidden ? 1 : -1
-        return a.localeCompare(b)
-      })
+    ? Object.keys(node.children)
+        .filter((name) => {
+          const child = node.children[name]
+          return child.type === 'dir' || isCwd
+        })
+        .sort((a, b) => {
+          const aDir = node.children[a].type === 'dir'
+          const bDir = node.children[b].type === 'dir'
+          if (aDir !== bDir) return aDir ? -1 : 1
+          const aHidden = a.startsWith('.')
+          const bHidden = b.startsWith('.')
+          if (aHidden !== bHidden) return aHidden ? 1 : -1
+          return a.localeCompare(b)
+        })
     : []
 
   const label = path === '/' ? '/' : node.name
@@ -29,7 +38,6 @@ function TreeNode({ node, path, cwd, depth }) {
           'tree-row',
           isCwd ? 'tree-row--cwd' : '',
           isDir ? 'tree-row--dir' : 'tree-row--file',
-          node.readable === false ? 'tree-row--denied' : '',
         ]
           .filter(Boolean)
           .join(' ')}
