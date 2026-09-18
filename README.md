@@ -26,6 +26,8 @@ A web app for students to learn the Unix command line, files, and folders.
 | `ls -l` | Long listing; metadata comes from the filesystem model below |
 | `mkdir` | Create a directory (only where the user has write permission) |
 
+**Tab completion:** Tab completes command names and path arguments (directories only for `cd`). Ambiguous matches are listed in the terminal.
+
 **Later:** `rm`, `touch`, `cat`
 
 ## Paths and errors
@@ -68,7 +70,6 @@ A web app for students to learn the Unix command line, files, and folders.
 ## Out of scope (v1)
 
 - Pipes and redirects
-- Tab completion
 - Command history
 - Colors inside the terminal output
 

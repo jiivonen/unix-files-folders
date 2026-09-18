@@ -1,7 +1,8 @@
 export const HOME = '/home/user';
 export const USER = 'user';
 
-const COMMAND_BINARIES = ['pwd', 'cd', 'ls', 'mkdir'];
+export const COMMANDS = ['cd', 'ls', 'mkdir', 'pwd'];
+const COMMAND_BINARIES = COMMANDS;
 
 function defaultTimestamp() {
   const now = new Date();

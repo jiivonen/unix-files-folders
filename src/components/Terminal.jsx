@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
+import { tabComplete } from '../fs/completion.js'
 import { displayPath, USER } from '../fs/filesystem.js'
 
-export default function Terminal({ lines, cwd, onSubmit, inputRef }) {
+export default function Terminal({ lines, cwd, fs, onSubmit, onListCompletions, inputRef }) {
   const [value, setValue] = useState('')
   const scrollRef = useRef(null)
 
@@ -11,6 +12,16 @@ export default function Terminal({ lines, cwd, onSubmit, inputRef }) {
   }, [lines])
 
   function handleKeyDown(e) {
+    if (e.key === 'Tab') {
+      e.preventDefault()
+      const { value: next, listings } = tabComplete(fs, cwd, value)
+      setValue(next)
+      if (listings?.length) {
+        onListCompletions?.(listings)
+      }
+      return
+    }
+
     if (e.key === 'Enter') {
       e.preventDefault()
       const command = value

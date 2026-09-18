@@ -26,6 +26,10 @@ export default function App() {
     setLines((prev) => [...prev, ...nextLines])
   }
 
+  function handleListCompletions(matches) {
+    setLines((prev) => [...prev, { type: 'output', text: matches.join('  ') }])
+  }
+
   return (
     <div className="app">
       <header className="app-header">
@@ -53,7 +57,9 @@ export default function App() {
         <Terminal
           lines={lines}
           cwd={state.cwd}
+          fs={state.fs}
           onSubmit={handleSubmit}
+          onListCompletions={handleListCompletions}
           inputRef={inputRef}
         />
       </section>
