@@ -30,6 +30,20 @@ export default function App() {
     setLines((prev) => [...prev, { type: 'output', text: matches.join('  ') }])
   }
 
+  function focusTerminal() {
+    inputRef.current?.focus()
+  }
+
+  function handlePrevExercise() {
+    setExerciseIndex((i) => Math.max(0, i - 1))
+    focusTerminal()
+  }
+
+  function handleNextExercise() {
+    setExerciseIndex((i) => Math.min(EXERCISES.length - 1, i + 1))
+    focusTerminal()
+  }
+
   return (
     <div className="app">
       <header className="app-header">
@@ -47,12 +61,12 @@ export default function App() {
           index={exerciseIndex}
           minimized={exerciseMinimized}
           onToggleMinimize={() => setExerciseMinimized((v) => !v)}
-          onPrev={() => setExerciseIndex((i) => Math.max(0, i - 1))}
-          onNext={() => setExerciseIndex((i) => Math.min(EXERCISES.length - 1, i + 1))}
+          onPrev={handlePrevExercise}
+          onNext={handleNextExercise}
         />
       </div>
 
-      <section className="terminal-pane" aria-label="Terminal" onClick={() => inputRef.current?.focus()}>
+      <section className="terminal-pane" aria-label="Terminal" onClick={focusTerminal}>
         <div className="pane-label">Terminal</div>
         <Terminal
           lines={lines}
