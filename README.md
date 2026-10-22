@@ -9,6 +9,31 @@ A web app for students to learn the Unix command line, files, and folders.
 - **localStorage**: deferred to a later version
 - UI language: English now; Finnish later
 
+## Run
+
+Requires Node.js and npm.
+
+```bash
+npm install
+```
+
+**Development** — Vite dev server with hot reload:
+
+```bash
+npm run dev
+```
+
+Open the URL printed in the terminal (usually `http://localhost:5173`).
+
+**Production** — build static files, then either preview locally or copy them to a web server:
+
+```bash
+npm run build
+npm run preview
+```
+
+`npm run build` writes the site into `dist/`. Copy the contents of `dist/` to the web server directory. The app is a static site (no backend). Serving from the site root works as-is; if the app lives in a subdirectory, set `base` in `vite.config.js` before building.
+
 ## Layout
 
 1. **Tree (top)** — Passive file/folder tree, similar to Windows File Explorer. View only; no click-to-navigate.
